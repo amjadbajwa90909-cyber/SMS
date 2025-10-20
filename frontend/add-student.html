@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Student</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>🏫 School Management System</h1>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <ul>
+        <li><a href="index.html">🏠 Dashboard</a></li>
+        <li><a href="add-student.html">➕ Add Student</a></li>
+        <li><a href="view-students.html">📋 View Students</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>Add New Student</h2>
+      <form id="addStudentForm">
+        <input type="text" placeholder="Student Name" name="name" required>
+        <input type="text" placeholder="Father Name" name="father_name" required>
+        <input type="number" placeholder="Roll Number" name="roll" required>
+        <input type="text" placeholder="Class" name="class" required>
+        <input type="number" placeholder="Marks" name="marks" required>
+        <select name="result" required>
+          <option value="">Select Result</option>
+          <option value="Pass">Pass</option>
+          <option value="Fail">Fail</option>
+        </select>
+        <button type="submit">Add Student</button>
+      </form>
+    </main>
+  </div>
+
+  <footer>© 2025 School Management System</footer>
+  <script src="js/add-student.js"></script>
+</body>
+</html>

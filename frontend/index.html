@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Management System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <h1>🏫 School Management System</h1>
+    <div class="user-info">Welcome, Teacher | <a href="#">Logout</a></div>
+  </header>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <ul>
+        <li><a href="index.html">🏠 Dashboard</a></li>
+        <li><a href="add-student.html">➕ Add Student</a></li>
+        <li><a href="view-students.html">📋 View Students</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main content -->
+    <main class="content">
+      <h2>Dashboard</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Total Students</h3>
+          <p id="totalStudents">0</p>
+        </div>
+        <div class="card">
+          <h3>Passed</h3>
+          <p id="passedStudents">0</p>
+        </div>
+        <div class="card">
+          <h3>Failed</h3>
+          <p id="failedStudents">0</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    © 2025 School Management System | Developed by Amjad
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
