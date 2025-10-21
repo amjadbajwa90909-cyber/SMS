@@ -5,17 +5,20 @@ import {
   deleteStudent,
   getStats,
 } from "../models/studentModel.js";
+import pool from "../config/db.js";
 
 export const getStudents = (req, res) => {
   const search = req.query.search || "";
+  console.log("🔍 Search received:", search); // 👈 ADD THIS LINE
   getAllStudents(search, (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(results);
   });
 };
 
+
 export const createStudent = (req, res) => {
-  addStudent(req.body, (err, result) => {
+  addStudent(req.body, (err) => {
     if (err) return res.status(500).json({ error: err.message });
     res.status(201).json({ message: "Student added successfully" });
   });
@@ -41,6 +44,8 @@ export const getStudentStats = (req, res) => {
     res.json(results[0]);
   });
 };
+
+// ✅ Get a single student by ID (used for Edit)
 export const getStudentById = async (req, res) => {
   try {
     const [rows] = await pool.query("SELECT * FROM students WHERE id = ?", [req.params.id]);

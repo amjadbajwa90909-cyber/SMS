@@ -1,11 +1,19 @@
 // Fetch and display students
 async function loadStudents(query = "") {
+  console.log("🟦 Sending search query to backend:", query); // 👈 NEW
   try {
-    const res = await fetch(`http://localhost:3000/api/students?search=${query}`);
+    const res = await fetch(`http://localhost:3000/api/students?search=${encodeURIComponent(query)}`);
+    console.log("🟩 Fetch URL:", res.url); // 👈 NEW
     const students = await res.json();
+    console.log("🟢 Backend returned:", students); // 👈 NEW
 
     const tbody = document.querySelector("#studentsTable tbody");
     tbody.innerHTML = "";
+
+    if (!students || students.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7">No students found</td></tr>`;
+      return;
+    }
 
     students.forEach((s) => {
       const row = document.createElement("tr");
@@ -17,23 +25,32 @@ async function loadStudents(query = "") {
         <td>${s.marks}</td>
         <td>${s.result}</td>
         <td>
-          <button onclick="editStudent(${s.id})">✏️EDIT</button>
-          <button onclick="deleteStudent(${s.id})">❌DELETE</button>
+          <button onclick="editStudent(${s.id})">✏️ EDIT</button>
+          <button onclick="deleteStudent(${s.id})">❌ DELETE</button>
         </td>
       `;
       tbody.appendChild(row);
     });
   } catch (error) {
-    console.error("Error loading students:", error);
+    console.error("❌ Error loading students:", error);
   }
 }
 
-// Search students
+// Search students (live typing)
 document.getElementById("searchBox").addEventListener("input", (e) => {
-  loadStudents(e.target.value);
+  const query = e.target.value.trim();
+  console.log("⌨️ User typed:", query); // 👈 NEW
+  loadStudents(query);
 });
 
-// Edit student (redirect to Add Student page prefilled)
+// Also make the “Search” button work
+function onSearchClick() {
+  const query = document.getElementById("searchBox").value.trim();
+  console.log("🔍 Search button clicked, query:", query); // 👈 NEW
+  loadStudents(query);
+}
+
+// Edit student
 function editStudent(id) {
   window.location.href = `./add-student.html?id=${id}`;
 }
@@ -57,5 +74,4 @@ async function deleteStudent(id) {
     console.error("Error deleting:", error);
   }
 }
-
 document.addEventListener("DOMContentLoaded", () => loadStudents());

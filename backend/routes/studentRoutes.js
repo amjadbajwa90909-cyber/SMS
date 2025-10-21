@@ -10,7 +10,7 @@ import {
 
 const router = express.Router();
 
-// ✅ Place stats route BEFORE routes with :id
+// ⚠️ Important: Place specific routes before parameterized ones
 router.get("/stats", getStudentStats);
 router.get("/:id", getStudentById);
 router.get("/", getStudents);
