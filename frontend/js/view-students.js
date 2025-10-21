@@ -35,7 +35,7 @@ document.getElementById("searchBox").addEventListener("input", (e) => {
 
 // Edit student (redirect to Add Student page prefilled)
 function editStudent(id) {
-  window.location.href = `add-student.html?id=${id}`;
+  window.location.href = `./add-student.html?id=${id}`;
 }
 
 // Delete student

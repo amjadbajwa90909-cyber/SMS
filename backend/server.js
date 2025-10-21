@@ -1,6 +1,3 @@
-// server.js
-// server.js
-// server.js
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2");
@@ -80,6 +77,19 @@ app.get("/api/students/search", (req, res) => {
   db.query(sql, params, (err, results) => {
     if (err) return res.status(500).json({ error: err });
     res.json(results);
+  });
+});
+// Get stats (total, passed, failed)
+app.get("/api/students/stats", (req, res) => {
+  const sql = `
+    SELECT COUNT(*) AS total,
+           SUM(LOWER(result)='pass') AS passed,
+           SUM(LOWER(result)='fail') AS failed
+    FROM students
+  `;
+  db.query(sql, (err, results) => {
+    if (err) return res.status(500).json({ error: err });
+    res.json(results[0]);
   });
 });
 
