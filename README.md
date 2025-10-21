@@ -102,52 +102,6 @@
 └── README.md
 </code></pre>
 
-  <h2>⚙️ Installation & Setup</h2>
-
-  <h3>1️⃣ Clone the repository</h3>
-  <pre><code>git clone https://github.com/yourusername/SMS.git
-cd SMS/backend
-</code></pre>
-
-  <h3>2️⃣ Install dependencies</h3>
-  <pre><code>npm install</code></pre>
-
-  <h3>3️⃣ Configure environment variables</h3>
-  <p>Create a <code>.env</code> file in the <code>backend/</code> folder:</p>
-  <pre><code>DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_mysql_password
-DB_NAME=sms_db
-PORT=3000
-</code></pre>
-
-  <h3>4️⃣ Create the MySQL database</h3>
-  <pre><code>CREATE DATABASE sms_db;
-
-USE sms_db;
-
-CREATE TABLE students (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  father_name VARCHAR(100),
-  roll_number INT,
-  class VARCHAR(20),
-  marks INT,
-  result VARCHAR(10)
-);
-</code></pre>
-
-  <h3>5️⃣ Run the backend server</h3>
-  <pre><code>node server.js</code></pre>
-
-  <p>✅ You should see:</p>
-  <pre><code>✅ Connected to MySQL database
-🚀 Server running on port 3000
-</code></pre>
-
-  <h3>6️⃣ Open the frontend</h3>
-  <pre><code>http://127.0.0.1:5500/SMS/frontend/index.html</code></pre>
-
   <h2>🧠 API Endpoints</h2>
   <table>
     <thead>
