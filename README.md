@@ -1,19 +1,81 @@
-**🏫 School Management System (SMS)**
-A simple full-stack School Management System built using
-Node.js, Express, MySQL, and Vanilla JavaScript (HTML, CSS, JS).
-It allows teachers to add, view, edit, and delete student records, and see overall performance stats.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Management System - README</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafc;
+      color: #222;
+      line-height: 1.6;
+      margin: 2rem auto;
+      max-width: 900px;
+      padding: 2rem;
+    }
+    h1, h2, h3 {
+      color: #1e40af;
+    }
+    code, pre {
+      background: #f3f4f6;
+      border-radius: 5px;
+      padding: 0.5rem;
+      font-family: "Courier New", monospace;
+    }
+    pre {
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background-color: #e0e7ff;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>🏫 School Management System (SMS)</h1>
 
-**🚀 Features**
-➕ Add new students
-📋 View all students in a searchable table
-✏️ Edit existing student records
-❌ Delete students
-📊 Dashboard shows total, passed, and failed counts
-⚙️ RESTful backend with Express and MySQL
-🎨 Responsive and clean frontend
+  <p>
+    A simple full-stack <strong>School Management System</strong> built using
+    <strong>Node.js, Express, MySQL, and Vanilla JavaScript (HTML, CSS, JS)</strong>.
+    It allows teachers to <strong>add, view, edit, and delete student records</strong>,
+    and see overall performance stats.
+  </p>
 
-**🧩 Folder Structure**
-SMS/
+  <h2>🚀 Features</h2>
+  <ul>
+    <li>➕ Add new students</li>
+    <li>📋 View all students in a searchable table</li>
+    <li>✏️ Edit existing student records</li>
+    <li>❌ Delete students</li>
+    <li>📊 Dashboard shows total, passed, and failed counts</li>
+    <li>⚙️ RESTful backend with Express and MySQL</li>
+    <li>🎨 Responsive and clean frontend</li>
+  </ul>
+
+  <h2>🧩 Folder Structure</h2>
+  <pre><code>SMS/
 ├── backend/
 │   ├── config/
 │   │   └── db.js
@@ -38,174 +100,72 @@ SMS/
 │   └── view-students.html
 │
 └── README.md
+</code></pre>
 
-**
-🧠 API Endpoints
-**
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>🧠 Students API Endpoints</title>
+  <h2>⚙️ Installation & Setup</h2>
 
-<style>
-  :root {
-    --bg: #0f172a;
-    --text: #f1f5f9;
-    --muted: #94a3b8;
-    --accent: #3b82f6;
-    --border: rgba(255, 255, 255, 0.08);
-    --radius: 12px;
-  }
+  <h3>1️⃣ Clone the repository</h3>
+  <pre><code>git clone https://github.com/yourusername/SMS.git
+cd SMS/backend
+</code></pre>
 
-  body {
-    font-family: "Inter", system-ui, sans-serif;
-    background: linear-gradient(180deg, #0a0f1f, #0f172a);
-    color: var(--text);
-    margin: 0;
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-  }
+  <h3>2️⃣ Install dependencies</h3>
+  <pre><code>npm install</code></pre>
 
-  .table-container {
-    width: 100%;
-    max-width: 900px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    overflow: hidden;
-    backdrop-filter: blur(6px);
-  }
+  <h3>3️⃣ Configure environment variables</h3>
+  <p>Create a <code>.env</code> file in the <code>backend/</code> folder:</p>
+  <pre><code>DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_mysql_password
+DB_NAME=sms_db
+PORT=3000
+</code></pre>
 
-  h2 {
-    margin: 0;
-    padding: 1.2rem 1.5rem;
-    background: linear-gradient(90deg, var(--accent), #60a5fa);
-    color: white;
-    font-size: 1.2rem;
-    letter-spacing: 0.5px;
-  }
+  <h3>4️⃣ Create the MySQL database</h3>
+  <pre><code>CREATE DATABASE sms_db;
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+USE sms_db;
 
-  thead {
-    background: rgba(255, 255, 255, 0.05);
-  }
+CREATE TABLE students (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  father_name VARCHAR(100),
+  roll_number INT,
+  class VARCHAR(20),
+  marks INT,
+  result VARCHAR(10)
+);
+</code></pre>
 
-  th, td {
-    padding: 1rem;
-    text-align: left;
-    font-size: 0.95rem;
-    border-bottom: 1px solid var(--border);
-  }
+  <h3>5️⃣ Run the backend server</h3>
+  <pre><code>node server.js</code></pre>
 
-  th {
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-  }
+  <p>✅ You should see:</p>
+  <pre><code>✅ Connected to MySQL database
+🚀 Server running on port 3000
+</code></pre>
 
-  tr:hover {
-    background: rgba(59, 130, 246, 0.1);
-    transition: 0.2s ease;
-  }
+  <h3>6️⃣ Open the frontend</h3>
+  <pre><code>http://127.0.0.1:5500/SMS/frontend/index.html</code></pre>
 
-  /* Method tags */
-  .method {
-    font-weight: 700;
-    padding: 0.4em 0.7em;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    letter-spacing: 0.02em;
-    display: inline-block;
-  }
+  <h2>🧠 API Endpoints</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Endpoint</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>GET</td><td>/api/students</td><td>Get all students (with optional <code>?search=</code>)</td></tr>
+      <tr><td>POST</td><td>/api/students</td><td>Add a new student</td></tr>
+      <tr><td>PUT</td><td>/api/students/:id</td><td>Update student by ID</td></tr>
+      <tr><td>DELETE</td><td>/api/students/:id</td><td>Delete student by ID</td></tr>
+      <tr><td>GET</td><td>/api/students/stats</td><td>Get total, passed, and failed counts</td></tr>
+    </tbody>
+  </table>
 
-  .GET { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.4); }
-  .POST { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.4); }
-  .PUT { background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234,179,8,0.4); }
-  .DELETE { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.4); }
-
-  /* Responsive */
-  @media (max-width: 700px) {
-    table, thead, tbody, th, td, tr { display: block; width: 100%; }
-    thead { display: none; }
-    tr {
-      margin: 0.7rem 0;
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: var(--radius);
-      padding: 1rem;
-      border: 1px solid var(--border);
-    }
-    td {
-      border: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.5rem 0;
-    }
-    td::before {
-      content: attr(data-label);
-      font-weight: 600;
-      color: var(--muted);
-    }
-  }
-</style>
-</head>
-
-<body>
-  <div class="table-container">
-    <h2>🧠 API Endpoints</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Method</th>
-          <th>Endpoint</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="Method"><span class="method GET">GET</span></td>
-          <td data-label="Endpoint"><code>/api/students</code></td>
-          <td data-label="Description">Get all students (with optional <code>?search=</code>)</td>
-        </tr>
-        <tr>
-          <td data-label="Method"><span class="method POST">POST</span></td>
-          <td data-label="Endpoint"><code>/api/students</code></td>
-          <td data-label="Description">Add a new student</td>
-        </tr>
-        <tr>
-          <td data-label="Method"><span class="method PUT">PUT</span></td>
-          <td data-label="Endpoint"><code>/api/students/:id</code></td>
-          <td data-label="Description">Update student by ID</td>
-        </tr>
-        <tr>
-          <td data-label="Method"><span class="method DELETE">DELETE</span></td>
-          <td data-label="Endpoint"><code>/api/students/:id</code></td>
-          <td data-label="Description">Delete student by ID</td>
-        </tr>
-        <tr>
-          <td data-label="Method"><span class="method GET">GET</span></td>
-          <td data-label="Endpoint"><code>/api/students/stats</code></td>
-          <td data-label="Description">Get total, passed, and failed counts</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</body>
-</html>
-
-
-<div class="table-container">
   <h2>🖥️ Frontend Pages</h2>
   <table>
     <thead>
@@ -215,24 +175,28 @@ SMS/
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td data-label="Page"><code>index.html</code></td>
-        <td data-label="Description">Dashboard showing student stats</td>
-      </tr>
-      <tr>
-        <td data-label="Page"><code>add-student.html</code></td>
-        <td data-label="Description">Add or edit student record</td>
-      </tr>
-      <tr>
-        <td data-label="Page"><code>view-students.html</code></td>
-        <td data-label="Description">View, search, edit, or delete students</td>
-      </tr>
+      <tr><td>index.html</td><td>Dashboard showing student stats</td></tr>
+      <tr><td>add-student.html</td><td>Add or edit student record</td></tr>
+      <tr><td>view-students.html</td><td>View, search, edit, or delete students</td></tr>
     </tbody>
   </table>
-</div>
 
+  <h2>👨‍💻 Developer</h2>
+  <p><strong>Amjad Alam Bajwa</strong><br>
+  📧 your-email@example.com<br>
+  🌐 <a href="https://github.com/amjadbajwa90909-cyber" target="_blank">GitHub: amjadbajwa90909-cyber</a></p>
 
+  <h2>🪪 License</h2>
+  <p>This project is open source and available under the <strong>MIT License</strong>.</p>
 
+  <h2>❤️ Acknowledgments</h2>
+  <ul>
+    <li><a href="https://nodejs.org/">Node.js</a></li>
+    <li><a href="https://expressjs.com/">Express.js</a></li>
+    <li><a href="https://www.npmjs.com/package/mysql2">MySQL2</a></li>
+    <li><a href="https://www.npmjs.com/package/dotenv">Dotenv</a></li>
+  </ul>
 
-
-
+  <footer>© 2025 School Management System | Developed by Amjad Alam Bajwa</footer>
+</body>
+</html>
