@@ -1,32 +1,28 @@
-version: "3.8"
-
 services:
   app:
-    image: sms
+    build: .
     container_name: sms_app
     ports:
-      - "3000:3000"
       - "8080:8080"
+      - "3000:3000"
     depends_on:
       - db
     environment:
       - DB_HOST=db
       - DB_USER=root
-      - DB_PASSWORD=1234
-      - DB_NAME=school_db
+      - DB_PASSWORD=yourpassword
+      - DB_NAME=smsdb
 
   db:
     image: mysql:8.0
     container_name: sms_db
-    restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=school_db
+      MYSQL_ROOT_PASSWORD=yourpassword
+      MYSQL_DATABASE=smsdb
     ports:
-      - "3306:3306"
+      - "3307:3306"   # changed to avoid conflict with local MySQL
     volumes:
       - db_data:/var/lib/mysql
 
 volumes:
   db_data:
-
