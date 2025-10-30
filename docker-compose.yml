@@ -8,19 +8,19 @@ services:
     depends_on:
       - db
     environment:
-      - DB_HOST=db
-      - DB_USER=root
-      - DB_PASSWORD=yourpassword
-      - DB_NAME=smsdb
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: yourpassword
+      DB_NAME: smsdb
 
   db:
     image: mysql:8.0
     container_name: sms_db
     environment:
-      MYSQL_ROOT_PASSWORD=yourpassword
-      MYSQL_DATABASE=smsdb
+      MYSQL_ROOT_PASSWORD: yourpassword
+      MYSQL_DATABASE: smsdb
     ports:
-      - "3307:3306"   # changed to avoid conflict with local MySQL
+      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
 
