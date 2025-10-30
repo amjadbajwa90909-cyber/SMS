@@ -22,12 +22,12 @@ jobs:
       # Step 3 — build your Docker image locally
       - name: Build Docker image
         run: |
-          docker build -t SMS:latest .
+          docker build -t sms:latest .
 
       # Step 4 — run the container (test run)
       - name: Run container for test
         run: |
-          docker run -d -p 8080:8080 SMS:latest
+          docker run -d -p 8080:8080 sms:latest
           sleep 10
           docker ps
 
