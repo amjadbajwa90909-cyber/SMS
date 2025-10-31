@@ -1,28 +1,59 @@
-services:
-  app:
-    build: .
-    container_name: sms_app
-    ports:
-      - "8080:8080"
-      - "3000:3000"
-    depends_on:
-      - db
-    environment:
-      DB_HOST: db
-      DB_USER: root
-      DB_PASSWORD: yourpassword
-      DB_NAME: smsdb
+version: "3.8"
 
+services:
   db:
     image: mysql:8.0
-    container_name: sms_db
+    container_name: my3tier_db
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: yourpassword
-      MYSQL_DATABASE: smsdb
-    ports:
-      - "3307:3306"
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: myappdb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
     volumes:
       - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    container_name: my3tier_backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # Set DB connection variables your backend reads:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: myuser
+      DB_PASSWORD: mypassword
+      DB_NAME: myappdb
+      NODE_ENV: development
+      PORT: 5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/usr/src/app   # for local dev (hot-reload), optional
+    command: ["node", "server.js"]
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: my3tier_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html  # optional for local dev (live changes)
 
 volumes:
   db_data:
